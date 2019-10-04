@@ -5,7 +5,7 @@ import * as Location from "expo-location";
 import axios from "axios";
 import Weather from "./Weather";
 
-const API_KEY = "5a7e178771d1211464cb769398e3ed8c";
+const API_KEY = "241051bf13976dd3ddf8b8d9f247255e";
 
 export default class extends React.Component {
   state = {
@@ -28,14 +28,13 @@ export default class extends React.Component {
   };
   getLocation = async () => {
     try {
-      const response = await Location.requestPermissionsAsync();
-      console.log(response);
+      await Location.requestPermissionsAsync();
       const {
         coords: { latitude, longitude }
       } = await Location.getCurrentPositionAsync();
       this.getWeather(latitude, longitude);
     } catch (error) {
-      Alert.alert("Can Not Find You");
+      Alert.alert("Can't find you.", "So sad");
     }
   };
   componentDidMount() {
